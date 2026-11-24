@@ -1,36 +1,8 @@
 "use client";
 import TaskManager from "@/components/TaskManager";
 import Clock from "@/components/Clock";
-import TodoFetcher from "@/components/ToDoFetcher";
-import { useState, useEffect } from "react";
 
-const tasks = [
-  {
-    id: 1,
-    title: "Tugas kalkulus sub-CPMK 5",
-    description: "Tugas kelompok, buat video pembahasan soalnya",
-    deadline: "2026-11-23T10:00",
-    createdAt: "2026-11-17T12:00",
-    done: false,
-  },
-  {
-    id: 2,
-    title: "Tugas Fisika persiapan kuis 2",
-    description: "Persiapan kuis 2: arus DC, arus AC, gelombang EM",
-    deadline: "2026-11-22T23:59",
-    createdAt: "2026-11-15T12:00",
-    done: true,
-  },
-  {
-    id: 3,
-    title: "Final project Excercise software",
-    description: "Deploy ke GitHub",
-    deadline: "2026-11-25T23:59",
-    createdAt: "2026-11-15T12:00",
-    done: false,
-  },
-]; 
-/*const tasks = []*/
+const tasks = []
 
 export default function Home() {
   return (
@@ -40,7 +12,6 @@ export default function Home() {
       {
         <Clock></Clock>
       }
-      {/*<TodoFetcher></TodoFetcher>*/}
     </main>
   );
 }

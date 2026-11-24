@@ -42,7 +42,7 @@ export default function TaskForm({
         onChange={(e) => setTitle(e.target.value)} />
       <textarea className={inputClass} placeholder="Deskripsi" value={description}
         onChange={(e) => setDescription(e.target.value)} />
-      <input className={`${inputClass} hover:cursor-text`} type="datetime-local" value={deadline}
+      <input className={`${inputClass} hover:cursor-text scheme-dark`} type="datetime-local" value={deadline}
         onChange={(e) => setDeadline(e.target.value)} />
       <button type="submit" className="border rounded-lg px-3 py-2 hover:bg-neutral-800 hover:cursor-pointer active:bg-neutral-700">
         {submitLabel}

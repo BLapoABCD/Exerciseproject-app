@@ -25,10 +25,10 @@ export default function TaskToolbar({
             aria-pressed={statusFilter === btn.id}
             onClick={() => onStatusFilterChange(btn.id)}
             className={`px-3 py-1.5 text-sm font-medium 
-              transition-colors hover:cursor-pointer active:bg-neutral-600 ${
+              transition-colors hover:cursor-pointer ${
               statusFilter === btn.id
-                ? "bg-purple-600 text-white shadow-sm"
-                : "bg-neutral-900 hover:bg-neutral-600"
+                ? "bg-purple-600 text-white shadow-sm active:bg-purple-500"
+                : "bg-neutral-900 hover:bg-neutral-800 active:bg-neutral-600"
             }`}
           >
             {btn.label}

@@ -1,34 +1,36 @@
-"use client";
-import { useEffect, useState } from "react";
+// @/components/ToDoFetcher.jsx
+const API_BASE = "/api/tasks";
 
-export default function TodoFetcher() {
-  const [todos, setTodos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export async function getTasks() {
+  const res = await fetch(API_BASE, { cache: "no-store" });
+  if (!res.ok) throw new Error("Gagal memuat tasks dari API");
+  return res.json();
+}
 
-  useEffect(() => {
-    async function ambilData() {
-      try {
-        const res = await fetch("https://jsonplaceholder.typicode.com/todoss?_limit=5");
-        if (!res.ok) throw new Error(`Gagal mengambil data (status ${res.status})`);
-        setTodos(await res.json());
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    ambilData();
-  }, []);
+export async function addTaskToApi(task) {
+  const res = await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(task),
+  });
+  if (!res.ok) throw new Error("Gagal menyimpan task baru ke API");
+  return res.json();
+}
 
-  if (loading) return <p>Memuat...</p>;
-  if (error) return <p className="text-red-500">Error: {error}</p>;
+export async function updateTaskInApi(id, updates) {
+  const res = await fetch(`${API_BASE}/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updates),
+  });
+  if (!res.ok) throw new Error("Gagal memperbarui task di API");
+  return res.json();
+}
 
-  return (
-    <ul>
-      {todos.map((t) => (
-        <li key={t.id}>{t.title}</li>
-      ))}
-    </ul>
-  );
+export async function deleteTaskFromApi(id) {
+  const res = await fetch(`${API_BASE}/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) throw new Error("Gagal menghapus task dari API");
+  return res.json();
 }
